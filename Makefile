@@ -14,8 +14,8 @@ swagfmt:
 grpc: grpc-api-gateway
 
 grpc-api-gateway:
-	protoc -Iapi-gateway/pkg/rpc/employee --go_out=. \
+	protoc -Iapi-gateway/pkg/rpc/employee --go_out=api-gateway \
 	--go_opt=module=github.com/karthikkalarikal/api-gateway \
-	--go-grpc_out=. \
+	--go-grpc_out=api-gateway \
 	--go-grpc_opt=module=github.com/karthikkalarikal/api-gateway \
 	api-gateway/pkg/rpc/employee/employee.proto
