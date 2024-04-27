@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package employee;
+
+option go_package = "github.com/karthikkalarikal/api-gateway/pkg/rpc/employee/proto";
+
+message Employee {
+    string name = 1;
+    string department = 2;
+    string role = 3;
+}
+
