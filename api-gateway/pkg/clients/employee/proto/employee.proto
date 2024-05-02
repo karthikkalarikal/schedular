@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package employee;
+
+
+option go_package="api-gateway/pkg/clients/employee/proto";
+
+service EmployeeService{
+    rpc AddEmployee (Employee) returns (EmployeeReply);
+}
+
+message Employee {
+    string name = 1;
+    string department = 2;
+    string role = 3;
+}
+
+message EmployeeReply{
+    int32 id = 1;
+    string name = 2;
+    string department = 3;
+    string role = 4;
+    string created_at = 5;
+
+}
+

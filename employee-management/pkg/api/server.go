@@ -1,30 +1,37 @@
 package HTTP
 
 import (
+	"fmt"
 	"log"
 	"net"
 
+	"github.com/karthikkalarikal/employee-management/pkg/api/service"
 	"github.com/karthikkalarikal/employee-management/pkg/config"
+	"github.com/karthikkalarikal/employee-management/pkg/pb"
 
 	"google.golang.org/grpc"
 )
 
-type GrpcServer struct {
+type ServiceHTTP struct {
 	grpc *grpc.Server
 	port string
 }
 
-func InitGRPC(config config.Config) *GrpcServer {
+func NewServerHTTP(config config.Config, employee *service.EmployeeService) *ServiceHTTP {
 	s := grpc.NewServer()
 
-	return &GrpcServer{
+	pb.RegisterEmployeeServiceServer(s, employee)
+
+	return &ServiceHTTP{
 		grpc: s,
 		port: config.Port,
 	}
 }
 
-func (s *GrpcServer) Start() {
+func (s *ServiceHTTP) Start() {
+	fmt.Println("tcp", s.port)
 	lis, err := net.Listen("tcp", s.port)
+
 	if err != nil {
 		log.Fatalf("cannot listen to port: %v", err)
 	}

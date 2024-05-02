@@ -49,7 +49,7 @@ func (h *AdministratorHandler) AddEmployee(e echo.Context) error {
 		return e.JSONPretty(http.StatusBadRequest, echo.Map{"error": err.Error()}, " ")
 	}
 
-	response, err := h.usecase.AddEmployee(employee)
+	response, err := h.usecase.AddEmployee(e, employee)
 	fmt.Println("response", response)
 	if err != nil {
 		return e.JSONPretty(http.StatusInternalServerError, echo.Map{"error": err.Error()}, " ")

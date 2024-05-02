@@ -11,11 +11,11 @@ type Employee struct {
 }
 
 type EmployeeResponse struct {
-	Id         int       `json:"id"`
-	Name       string    `json:"name"`
-	Department string    `json:"department"`
-	Role       string    `json:"role"`
-	CreatedAt  time.Time `json:"created_at"`
+	Id         int    `json:"id"`
+	Name       string `json:"name"`
+	Department string `json:"department"`
+	Role       string `json:"role"`
+	CreatedAt  string `json:"created_at"`
 }
 
 type Availability struct {

@@ -3,16 +3,17 @@ package employee
 import (
 	"log"
 
+	"github.com/karthikkalarikal/api-gateway/pkg/clients/employee/proto"
 	"github.com/karthikkalarikal/api-gateway/pkg/config"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 )
 
-type GRPCConnection struct {
-	Connection *grpc.ClientConn
+type EmployeeClient struct {
+	Client proto.EmployeeServiceClient
 }
 
-func InitRPC(cfg config.Config) *GRPCConnection {
+func NewEmployeeClient(cfg config.Config) *EmployeeClient {
 	conn, err := grpc.Dial(cfg.EmployeeGRPC, grpc.WithTransportCredentials(insecure.NewCredentials())) //not secure
 
 	if err != nil {
@@ -21,8 +22,8 @@ func InitRPC(cfg config.Config) *GRPCConnection {
 	}
 	defer conn.Close()
 
-	return &GRPCConnection{
-		Connection: conn,
+	return &EmployeeClient{
+		Client: proto.NewEmployeeServiceClient(conn),
 	}
 
 }
